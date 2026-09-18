@@ -16,8 +16,16 @@ class TodoList:
     def finish(self, index):
         self.items[index]["done"] = True
 
+    def remove(self, index):
+        return self.items.pop(index)
+
     def pending(self):
         return [it["title"] for it in self.items if not it["done"]]
+
+    def summary(self):
+        total = len(self.items)
+        done = total - len(self.pending())
+        return "已完成 %d / %d 项" % (done, total)
 
 
 def main():
@@ -27,6 +35,7 @@ def main():
     todo.add("完成分支实验")
 
     todo.finish(0)
+    todo.finish(1)
 
     print("Git Practice Project")
     print("-" * 24)
@@ -34,7 +43,7 @@ def main():
         mark = "x" if item["done"] else " "
         print("[%s] %d. %s" % (mark, i, item["title"]))
     print("-" * 24)
-    print("未完成：%d 项" % len(todo.pending()))
+    print(todo.summary())
 
 
 if __name__ == "__main__":
