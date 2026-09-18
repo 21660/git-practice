@@ -30,3 +30,10 @@ git-practice/
 ```bash
 python src/main.py
 ```
+
+
+## 运行与协作说明
+
+本节内容直接在 GitHub 网页端编辑并提交，用于演示从远程仓库拉取更新的
+`git pull` 操作。命令行下的版本记录与网页端的提交最终都汇合到同一个
+`main` 分支上。
