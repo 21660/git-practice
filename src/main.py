@@ -27,6 +27,15 @@ class TodoList:
         done = total - len(self.pending())
         return "已完成 %d / %d 项" % (done, total)
 
+    def progress(self, width=20):
+        total = len(self.items)
+        if not total:
+            return "[" + "." * width + "] 0%"
+        done = total - len(self.pending())
+        filled = int(round(done / total * width))
+        return "[%s%s] %d%%" % ("#" * filled, "." * (width - filled),
+                                done * 100 // total)
+
 
 def main():
     todo = TodoList()
@@ -44,6 +53,7 @@ def main():
         print("[%s] %d. %s" % (mark, i, item["title"]))
     print("-" * 24)
     print(todo.summary())
+    print(todo.progress())
 
 
 if __name__ == "__main__":
